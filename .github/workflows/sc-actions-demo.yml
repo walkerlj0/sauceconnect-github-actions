@@ -1,4 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow will do a clean install of Java & Maven, start a Sauce Connect tunnel, then run a Java Test suite through that tunnel
 
 name: Swag Labs Sample Java Test with Sauce Connect
 
@@ -7,18 +7,15 @@ on:
     branches:
       - main
   pull_request:
-    branches: [ $default-branch ]
+
+env:
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+  BUILD_PREFIX: true
 
 jobs:
-  build:
-
+  build-test-env:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
-    env:
-      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-      SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
     steps:
       - uses: actions/checkout@v2
@@ -38,3 +35,7 @@ jobs:
           accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
           tunnelIdentifier: ciTunnel
           scVersion: 4.6.4
+
+      - name: Run Java Test with SC
+          uses: saucelabs/sauce-connect-action@v1
+          with:
