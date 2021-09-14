@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - diego-changes
   pull_request:
   workflow_dispatch:
 
@@ -35,4 +36,4 @@ jobs:
           java-version: 1.8
       - name: Run tests
         continue-on-error: true
-        run: mvn test -pl java_tests
+        run: cd java_tests && mvn test
