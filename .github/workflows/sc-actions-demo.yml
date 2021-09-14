@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - diego-changes
   pull_request:
   workflow_dispatch:
 
