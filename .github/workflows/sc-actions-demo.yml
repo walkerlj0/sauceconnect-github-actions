@@ -29,7 +29,7 @@ jobs:
           tunnelIdentifier: ${{ secrets.SAUCE_TUNNEL_NAME }}
           scVersion: 4.6.4
 
-      - name: Build Your App
+      #- name: Build Your App
           # Add code here to build your app
 
       - name: Set up JDK 1.8
