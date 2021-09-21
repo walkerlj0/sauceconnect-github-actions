@@ -1,5 +1,5 @@
 # This workflow will do a clean install of Java & Maven, start a Sauce Connect tunnel, then run a Java Test suite with that tunnel
-name: Swag Labs Sample Java Test with Sauce Connect
+name: Sample Java Test with Sauce Connect
 
 on:
   push:
